@@ -1,5 +1,6 @@
-#include <catch2/catch_session.hpp>
-#include <catch2/catch_test_macros.hpp>
+#pragma once
+
+#include <catch2/catch_all.hpp>
 #include <iostream>
 
 struct ListNode
@@ -98,9 +99,8 @@ private:
 TEST_CASE("list test, [list]")
 {
     List list;
-    CHECK(list.PopBack());
-    
-    CHECK(list.PopFront());
+    CHECK_THROWS_WITH(list.PopBack(), "list is empty");
+    CHECK_THROWS_WITH(list.PopFront(), "list is empty");
     
     list.PushFront(2);
     list.PushBack(3);
